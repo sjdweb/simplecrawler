@@ -17,12 +17,12 @@ class SpyderTest(unittest.TestCase):
 
     def test_add_url(self):
         self.spyder.add_url("http://gocardless.com/faq")
-        self.assertIsNotNone(self.spyder.to_crawl)
+        self.assertEquals(len(self.spyder.to_crawl), 1)
 
     def test_add_existing_url(self):
         self.spyder.add_url("http://gocardless.com/faq")
-        self.spyder.add_url("http://gocardless.com/faq")
-        self.assertEqual(len(self.spyder.to_crawl), 2)
+        self.spyder.add_url("/faq")
+        self.assertEqual(len(self.spyder.to_crawl), 1)
 
     def test_add_excluded_url(self):
         result = self.spyder.add_url("http://gocardless.com/notallowed.pdf")

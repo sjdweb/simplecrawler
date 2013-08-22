@@ -4,12 +4,13 @@ from bs4 import BeautifulSoup
 
 class Spyder(object):
     def __init__(self, base_url):
-        self.to_crawl = [base_url]
+        self.to_crawl = []
         self.crawled = []
-        self.base_url = base_url
         self.results = []
+        self.base_url = base_url
 
     def run(self):
+        self.add_url('/')
         while 1:
             try:
                 crawling = self.to_crawl.pop()
@@ -84,5 +85,4 @@ class Spyder(object):
             url = self.base_url + url
         if url not in self.crawled:
             if url not in self.to_crawl:
-                print url
                 self.to_crawl.append(url)
